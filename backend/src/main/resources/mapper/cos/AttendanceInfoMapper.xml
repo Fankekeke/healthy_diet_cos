@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.AttendanceInfoMapper">
+
+    <!-- 分页查询打卡记录 -->
+    <select id="queryAttendancePage" resultType="java.util.LinkedHashMap">
+        select
+        ai.id,
+        ai.user_id,
+        ai.put_take_date,
+        ui.name as userName,
+        ui.code as userCode,
+        ui.images as userImages
+        from
+        attendance_info ai
+        left join user_info ui on
+        (ui.id = ai.user_id)
+        where
+        1 = 1
+        <if test="attendanceInfo.userName != null and attendanceInfo.userName != ''">
+            AND ui.name LIKE CONCAT('%',#{attendanceInfo.userName},'%')
+        </if>
+        <if test="attendanceInfo.userId != null and attendanceInfo.userId != ''">
+            AND ui.user_id = #{attendanceInfo.userId}
+        </if>
+        order by
+        ai.put_take_date desc
+    </select>
+
+    <!-- 根据用户获取打卡记录 -->
+    <select id="queryAttendanceRecordByUserId" resultType="java.util.LinkedHashMap">
+        SELECT ai.id,
+        ai.user_id,
+        ai.put_take_date
+        FROM
+        attendance_info ai
+        left join user_info ui on
+        (ui.id = ai.user_id)
+        WHERE
+        1 = 1
+        <if test="userId != null and userId != ''">
+            AND ui.user_id = #{userId}
+        </if>
+        ORDER BY
+        user_id
+    </select>
+
+    <!-- 校验今日是否已经打卡 -->
+    <select id="queryTodayCheck" resultType="java.lang.Integer">
+        select count(1) from attendance_info ai
+        left join user_info ui on
+        (ui.id = ai.user_id)
+        where
+        1 = 1
+        <if test="userId != null and userId != ''">
+            AND ui.user_id = #{userId}
+        </if>
+        AND date_format(ai.put_take_date, '%Y-%m-%d') = date_format(#{createDate}, '%Y-%m-%d')
+    </select>
+</mapper>

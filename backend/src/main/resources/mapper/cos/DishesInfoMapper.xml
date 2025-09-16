@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.DishesInfoMapper">
+
+    <!-- 分页查询菜品信息 -->
+    <select id="queryDishesPage" resultType="java.util.LinkedHashMap">
+        select
+        id,
+        code,
+        name,
+        content,
+        raw_material,
+        portion,
+        taste,
+        status,
+        create_date,
+        images,
+        heat,
+        protein,
+        fat,
+        user_id
+        from
+        dishes_info
+        where
+        1 = 1
+        and user_id is null
+        <if test="dishesInfo.code != null and dishesInfo.code != ''">
+            AND code LIKE CONCAT('%',#{dishesInfo.code},'%')
+        </if>
+        <if test="dishesInfo.name != null and dishesInfo.name != ''">
+            AND name LIKE CONCAT('%',#{dishesInfo.name},'%')
+        </if>
+        order by
+        create_date desc
+    </select>
+
+    <!-- 分页查询菜品信息 -->
+    <select id="queryDishesByUserPage" resultType="java.util.LinkedHashMap">
+        select
+        di.id,
+        di.code,
+        di.name,
+        di.content,
+        di.raw_material,
+        di.portion,
+        di.taste,
+        di.status,
+        di.create_date,
+        di.images,
+        di.heat,
+        di.protein,
+        di.fat,
+        di.user_id,
+        ui.name as userName,
+        ui.code as userCode,
+        ui.images as userImages
+        from
+        dishes_info di
+        left join user_info ui on
+        (ui.id = di.user_id)
+        where
+        1 = 1
+        and di.user_id is not null
+        <if test="dishesInfo.code != null and dishesInfo.code != ''">
+            AND di.code LIKE CONCAT('%',#{dishesInfo.code},'%')
+        </if>
+        <if test="dishesInfo.name != null and dishesInfo.name != ''">
+            AND di.name LIKE CONCAT('%',#{dishesInfo.name},'%')
+        </if>
+        <if test="dishesInfo.userName != null and dishesInfo.userName != ''">
+            AND ui.name LIKE CONCAT('%',#{dishesInfo.userName},'%')
+        </if>
+        <if test="dishesInfo.userId != null and dishesInfo.userId != ''">
+            AND ui.user_id = #{dishesInfo.userId}
+        </if>
+        order by
+        create_date desc
+
+    </select>
+
+    <!-- 根据用户查询菜品信息 -->
+    <select id="queryDishesByUserId" resultType="cc.mrbird.febs.cos.entity.DishesInfo">
+        select
+        di.id,
+        di.code,
+        di.name,
+        di.content,
+        di.raw_material,
+        di.portion,
+        di.taste,
+        di.status,
+        di.create_date,
+        di.images,
+        di.heat,
+        di.protein,
+        di.fat,
+        di.user_id,
+        ui.name as userName,
+        ui.code as userCode,
+        ui.images as userImages
+        from
+        dishes_info di
+        left join user_info ui on
+        (ui.id = di.user_id)
+        where
+        1 = 1
+        and di.user_id is not null
+        <if test="userId != null and userId != ''">
+            AND ui.user_id = #{userId}
+        </if>
+        order by
+        create_date desc
+    </select>
+</mapper>
