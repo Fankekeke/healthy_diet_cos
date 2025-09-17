@@ -136,7 +136,7 @@ export default {
         title: '公告内容',
         dataIndex: 'content',
         scopedSlots: { customRender: 'contentShow' },
-        width: 600
+        width: 500
       }, {
         title: '发布时间',
         dataIndex: 'createDate',

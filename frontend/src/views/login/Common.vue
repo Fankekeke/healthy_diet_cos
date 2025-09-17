@@ -5,7 +5,7 @@
         <div class="header">
           <a-row style="width: 368px;margin: 0 auto">
             <a-col :span="24">
-              <div style="text-align: left;font-size: 23px;margin-bottom: 10px;font-family: SimHei;margin-top: 30px;color: #0E65BB;text-align: center">健康饮食平台</div>
+              <div style="text-align: left;font-size: 23px;margin-bottom: 10px;font-family: SimHei;margin-top: 30px;color: #086b5c;text-align: center">健康饮食平台</div>
             </a-col>
           </a-row>
         </div>
@@ -52,8 +52,10 @@ export default {
     flex-direction: column;
     height: 100vh;
     overflow: auto;
-    background-color: #b6daf5;
-    background-repeat: repeat-x, repeat;
+    background-color: #ddf5f5;
+    background: rgb(234, 234, 234) url(../../../static/img/house.png) no-repeat center ;
+    background-size: contain;
+    //background-repeat: repeat-x, repeat;
     .content {
       padding: 32px 0;
       flex: 1;

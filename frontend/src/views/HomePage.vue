@@ -1,5 +1,5 @@
 <template>
-  <div :class="[multipage === true ? 'multi-page':'single-page', 'not-menu-page', 'home-page']" style="background-color: #b6daf5; border: none">
+  <div :class="[multipage === true ? 'multi-page':'single-page', 'not-menu-page', 'home-page']" style="background-color: #ddf5f5; border: none">
     <a-row v-if="newsList.length > 0" style="width: 65%;margin: 0 auto;margin-bottom: 15px">
       <a-col :span="22">
         <a-alert
@@ -14,7 +14,7 @@
     </a-row>
     <a-row :gutter="20" style="width: 66%;margin: 0 auto;margin-bottom: 15px">
       <a-col :span="18">
-        <a-carousel effect="fade">
+        <a-carousel effect="fade" autoplay>
           <div style="width: 100%;height: 550px" v-for="(item, index) in homeImage" :key="index"><img :src="'http://127.0.0.1:9527/imagesWeb/' + item" style="width: 100%;height: 100%;object-fit:cover;" /></div>
         </a-carousel>
       </a-col>
@@ -290,7 +290,7 @@ export default {
       postEdit: {
         visiable: false
       },
-      homeImage: ['SA1679123854527.jpg'],
+      homeImage: ['SA1758117349160.jpg'],
       bulletinList: [],
       orderView: {
         visiable: false,
@@ -422,7 +422,6 @@ export default {
         this.homeImage = r.data.home.images.split(',')
         this.bulletinList = r.data.clothes
         console.log(this.homeImage)
-        console.log(this.bulletinList)
       })
     },
     orderViewOpen (row) {
