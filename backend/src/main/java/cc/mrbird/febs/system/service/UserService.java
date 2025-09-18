@@ -1,6 +1,7 @@
 package cc.mrbird.febs.system.service;
 
 import cc.mrbird.febs.common.domain.QueryRequest;
+import cc.mrbird.febs.cos.entity.UserInfo;
 import cc.mrbird.febs.system.domain.User;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -90,5 +91,7 @@ public interface UserService extends IService<User> {
      * @param usernames 用户集合
      */
     void resetPassword(String[] usernames) throws Exception;
+
+    UserInfo registUser(UserInfo userInfo, String password) throws Exception;
 
 }
