@@ -48,6 +48,13 @@ public interface PostInfoMapper extends BaseMapper<PostInfo> {
     List<LinkedHashMap<String, Object>> getPostByUser(@Param("userId") Integer userId);
 
     /**
+     * 获取热门贴子信息
+     *
+     * @return 结果
+     */
+    List<LinkedHashMap<String, Object>> getPostListHot();
+
+    /**
      * 根据贴子ID获取回复信息
      *
      * @param postId 贴子ID

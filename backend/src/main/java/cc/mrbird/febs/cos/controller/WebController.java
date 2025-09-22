@@ -295,7 +295,9 @@ public class WebController {
 
     @GetMapping("/home")
     public R home() {
-        return R.ok();
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+        result.put("postInfo", postInfoService.getPostListHot());
+        return R.ok(result);
     }
 
     /**

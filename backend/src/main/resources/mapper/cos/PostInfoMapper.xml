@@ -99,7 +99,9 @@
         LEFT JOIN user_info ui ON (ui.user_id = tu.USER_ID)
         WHERE
         pi.delete_flag = 0
-        AND FIND_IN_SET(#{ tagId }, pi.tag_ids)
+        <if test="tagId != null">
+            AND FIND_IN_SET(#{ tagId }, pi.tag_ids)
+        </if>
         GROUP BY pi.id
         ORDER BY pi.create_date DESC
     </select>
@@ -263,6 +265,25 @@
                 LEFT JOIN user_info ui ON (ui.user_id = tu.USER_ID)
         WHERE
             pi.id = #{postId}
+    </select>
+
+    <!-- 获取热门贴子信息 -->
+    <select id="getPostListHot" resultType="java.util.LinkedHashMap">
+        SELECT
+            pi.id,
+            pi.title,
+            pi.content,
+            pi.images,
+            pi.create_date AS createDate,
+            ui.name AS userName,
+            ui.images AS avatar
+        FROM
+            post_info pi
+                LEFT JOIN user_info ui ON ( pi.user_id = ui.id )
+        WHERE
+            1 = 1
+        ORDER BY pi.create_date DESC
+            LIMIT 4
     </select>
 
     <!-- 获取贴子消息 -->

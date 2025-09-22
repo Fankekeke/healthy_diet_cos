@@ -8,19 +8,19 @@ Page({
 		current: 0,lines: 0,
 		swiperlist: [{
 			id: 0,
-			url: 'http://127.0.0.1:9527/imagesWeb/1129494419_16806060753221n.jpg',
+			url: 'http://127.0.0.1:9527/imagesWeb/SA1758117349160.jpg',
 			type: 1
 		}, {
 			id: 1,
-			url: 'http://127.0.0.1:9527/imagesWeb/1129494419_16806060753601n.jpg',
+			url: 'http://127.0.0.1:9527/imagesWeb/SA1758117351445.jpg',
 			type: 2
 		}, {
 			id: 2,
-			url: 'http://127.0.0.1:9527/imagesWeb/1129494419_16806060753881n.jpg',
+			url: 'http://127.0.0.1:9527/imagesWeb/SA1758117353621.jpg',
 			type: 3
 		}, {
 			id: 3,
-			url: 'http://127.0.0.1:9527/imagesWeb/1129494419_16806060754391n.jpg',
+			url: 'http://127.0.0.1:9527/imagesWeb/SA1758117607504.jpg',
 			type: 4
 		}],
 		iconList: [{
