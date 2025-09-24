@@ -69,6 +69,11 @@ public class UserInfo implements Serializable {
 
     private String avatar;
 
+    private String age;
+    private String phone;
+    private String idCard;
+    private String contract;
+
     @TableField(exist = false)
     private Integer focusNum;
 
