@@ -31,7 +31,7 @@ Page({
   },
   add() {
     wx.navigateTo({
-      url: '/pages/goods/add/index'
+      url: '/pages/sport/add/index'
     });
   },
   edit(event) {
@@ -83,7 +83,7 @@ Page({
     })
   },
   getOrderListByUserId(userId) {
-    http.get('queryDishesListById', { userId }).then((r) => {
+    http.get('querySportListById', { userId }).then((r) => {
       console.log(r.data)
       r.data.forEach(item => {
         if (item.images) {
@@ -99,7 +99,7 @@ Page({
     })
   },
   removerPost(event) {
-    http.get('deleteDishes', { postId: event.currentTarget.dataset.index }).then((r) => {
+    http.get('deletePost', { postId: event.currentTarget.dataset.index }).then((r) => {
       wx.showToast({
         title: '删除成功',
         icon: 'none',

@@ -7,24 +7,49 @@ Page({
     TabbarBot: app.globalData.tabbar_bottom,
     hidden: true,
     name: '',
-    rawMaterial: '',
-    portion: 0,
-    taste: '',
-    heat: 0,
-    protein: 0,
-    fat: 0,
     content: '',
     fileList: [],
     price: 0,
-    waterAmount: 0,
-    weight: 0,
     bottom: false,
     column1: ['食品', '饮品', '药品'],
     vaa: "",
     radio: '1',
+    goodsInfo: null
   },
   onLoad: function (option) {
-    this.isLogin()
+    this.getGoodsInfo(option.goodsId)
+  },
+  getGoodsInfo(commodityId) {
+    http.get('getGoodsInfoById', { commodityId }).then((r) => {
+      let type = ''
+      switch (r.data.type) {
+        case 1:
+          type = '食品'
+          break;
+        case 2:
+          type = '饮品'
+          break;
+        case 3:
+          type = '药品'
+          break;
+
+        default:
+          break;
+      }
+      let fileList = []
+      r.data.images.split(',').forEach(item => {
+        fileList.push({type: 'image', url: item, thumb: 'http://127.0.0.1:9527/imagesWeb/'+item})
+      });
+      this.setData({
+        name: r.data.name,
+        price: r.data.price,
+        content: r.data.content,
+        radio: r.data.onPut == 1 ? '1' : '2',
+        vaa: type,
+        fileList,
+        goodsInfo: r.data
+      })
+    })
   },
   onChange(event) {
     this.setData({
@@ -32,9 +57,7 @@ Page({
     });
   },
   onClick(event) {
-    const {
-      name
-    } = event.currentTarget.dataset;
+    const { name } = event.currentTarget.dataset;
     this.setData({
       radio: name,
     });
@@ -90,7 +113,7 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {
-        if (this.data.name == '' || this.data.rawMaterial == '' || this.data.portion == 0 || this.data.fat == 0 || this.data.protein == 0 || this.data.heat == 0 || this.data.taste == '') {
+        if (this.data.name == '' || this.data.content == '' || this.data.price == 0 || this.data.vaa == '' || this.data.fileList === 0) {
           wx.showToast({
             title: '请完整填写！',
             icon: 'error',
@@ -101,23 +124,25 @@ Page({
           this.data.fileList.forEach(item => {
             images.push(item.url)
           });
-         
-          let data = {
-            name: this.data.name,
-            rawMaterial: this.data.rawMaterial,
-            portion: this.data.portion,
-            taste: this.data.taste,
-            heat: this.data.heat,
-            protein: this.data.protein,
-            fat: this.data.fat,
-            userId: res.data.id,
-            images: images.length !== 0 ? images.join(',') : null,
-            content: this.data.content
+          let type = 0
+          switch (this.data.vaa) {
+            case '食品':
+              type = 1
+              break;
+            case '饮品':
+              type = 2
+              break;
+            case '药品':
+              type = 3
+              break;
+
+            default:
+              break;
           }
-          console.log(JSON.stringify(data))
-          http.post('addDishesInfo', data).then((r) => {
+          let data = { id: this.data.goodsInfo.id, name: this.data.name, type: type, shopId: this.data.goodsInfo.shopId, images: images.length !== 0 ? images.join(',') : null, price: this.data.price, onPut: this.data.radio == 1 ? 1 : 0, content: this.data.content }
+          http.post('editCommodity', data).then((r) => {
             wx.showToast({
-              title: '提交成功！',
+              title: '修改成功！',
               icon: 'success',
               duration: 1000
             })
@@ -139,9 +164,7 @@ Page({
     })
   },
   afterRead(event) {
-    const {
-      file
-    } = event.detail;
+    const { file } = event.detail;
     let that = this
     // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
     wx.uploadFile({
@@ -150,16 +173,9 @@ Page({
       name: 'avatar',
       success(res) {
         // 上传完成需要更新 fileList
-        const {
-          fileList = []
-        } = that.data;
-        fileList.push({
-          ...file,
-          url: res.data
-        });
-        that.setData({
-          fileList
-        });
+        const { fileList = [] } = that.data;
+        fileList.push({ ...file, url: res.data });
+        that.setData({ fileList });
         console.log(JSON.stringify(fileList))
       },
     });

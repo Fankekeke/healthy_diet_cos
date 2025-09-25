@@ -59,6 +59,10 @@ public class WebController {
 
     private final IWeightRecordInfoService weightRecordInfoService;
 
+    private final IDishesInfoService dishesInfoService;
+
+    private final ISportTypeInfoService sportTypeInfoService;
+
     @PostMapping("/userAdd")
     public R userAdd(@RequestBody UserInfo user) throws Exception {
         String url = "https://api.weixin.qq.com/sns/jscode2session";
@@ -519,4 +523,37 @@ public class WebController {
         return R.ok(weightRecordInfoService.removeById(weightId));
     }
 
+    @PostMapping("/addDishesInfo")
+    public R addDishesInfo(@RequestBody DishesInfo dishesInfo) {
+        dishesInfo.setCode("DIS-" + System.currentTimeMillis());
+        dishesInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        return R.ok(dishesInfoService.save(dishesInfo));
+    }
+
+    @GetMapping("/queryDishesListById")
+    public R queryDishesListById(@RequestParam("userId") Integer userId) {
+        return R.ok(dishesInfoService.list(Wrappers.<DishesInfo>lambdaQuery().eq(DishesInfo::getUserId, userId)));
+    }
+
+    @GetMapping("/deleteDishes")
+    public R deleteDishes(@RequestParam("postId") Integer postId) {
+        return R.ok(dishesInfoService.removeById(postId));
+    }
+
+    @PostMapping("/addSport")
+    public R addSportInfo(@RequestBody SportTypeInfo sportTypeInfo) {
+        sportTypeInfo.setCode("ST-" + System.currentTimeMillis());
+        sportTypeInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        return R.ok(sportTypeInfoService.save(sportTypeInfo));
+    }
+
+    @GetMapping("/querySportListById")
+    public R querySportListById(@RequestParam("userId") Integer userId) {
+        return R.ok(sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().eq(SportTypeInfo::getUserId, userId)));
+    }
+
+    @GetMapping("/deleteSport")
+    public R deleteSport(@RequestParam("postId") Integer postId) {
+        return R.ok(sportTypeInfoService.removeById(postId));
+    }
 }

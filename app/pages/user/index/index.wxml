@@ -47,7 +47,13 @@
     <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/weight/index">
             <text class='icon-file text-green'></text>
-            <text class='text-grey'>健康信息</text>
+            <text class='text-grey'>我的菜品</text>
+        </navigator>
+    </view>
+    <view class="cu-item arrow">
+        <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/sport/index">
+            <text class='icon-file text-green'></text>
+            <text class='text-grey'>运动管理</text>
         </navigator>
     </view>
     <view class="cu-item arrow">

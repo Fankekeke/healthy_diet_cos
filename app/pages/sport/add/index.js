@@ -7,12 +7,8 @@ Page({
     TabbarBot: app.globalData.tabbar_bottom,
     hidden: true,
     name: '',
-    rawMaterial: '',
-    portion: 0,
-    taste: '',
+    sportTime: 0,
     heat: 0,
-    protein: 0,
-    fat: 0,
     content: '',
     fileList: [],
     price: 0,
@@ -90,7 +86,7 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {
-        if (this.data.name == '' || this.data.rawMaterial == '' || this.data.portion == 0 || this.data.fat == 0 || this.data.protein == 0 || this.data.heat == 0 || this.data.taste == '') {
+        if (this.data.name == '' || this.data.sportTime == 0 || this.data.heat == 0) {
           wx.showToast({
             title: '请完整填写！',
             icon: 'error',
@@ -101,21 +97,17 @@ Page({
           this.data.fileList.forEach(item => {
             images.push(item.url)
           });
-         
+
           let data = {
             name: this.data.name,
-            rawMaterial: this.data.rawMaterial,
-            portion: this.data.portion,
-            taste: this.data.taste,
-            heat: this.data.heat,
-            protein: this.data.protein,
-            fat: this.data.fat,
             userId: res.data.id,
             images: images.length !== 0 ? images.join(',') : null,
+            sportTime: this.data.sportTime,
+            heat: this.data.heat,
             content: this.data.content
           }
           console.log(JSON.stringify(data))
-          http.post('addDishesInfo', data).then((r) => {
+          http.post('addSport', data).then((r) => {
             wx.showToast({
               title: '提交成功！',
               icon: 'success',

@@ -3,22 +3,23 @@
     <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
         <navigator class='action canui-head-title' open-type="navigateBack" hover-class="none">
             <text class='icon-back'></text>
-            添加我的菜品
+            添加运动类型
         </navigator>
     </view>
 </view>
 <view class="box" style="top: {{CustomBar}}px;">
     <br />
     <view style="padding: 20px;display: block">
-        <van-field model:value="{{ name }}" label="菜品名称" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field model:value="{{ rawMaterial }}" label="原料" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field type='number' model:value="{{ portion }}" label="份量(克)" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field model:value="{{ taste }}" label="口味" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field type='number' model:value="{{ heat }}" label="热量含量" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field type='number' model:value="{{ protein }}" label="蛋白质含量" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field type='number' model:value="{{ fat }}" label="脂肪含量" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field model:value="{{ content }}" label="菜品描述" type="textarea" placeholder="请输入" style="display: block;margin-top: 15px;" autosize border="{{ false }}" />
+        <van-field model:value="{{ name }}" label="运动名称" placeholder="请输入" style="display: block;margin-top: 10px;" />
+        <van-field type='number' model:value="{{ heat }}" label="消耗热量" placeholder="请输入" style="display: block;margin-top: 10px;" />
+        <van-field type='number' model:value="{{ sportTime }}" label="运动时间" placeholder="请输入（分钟）" style="display: block;margin-top: 10px;" />
+        <van-field model:value="{{ content }}" label="运动备注" type="textarea" placeholder="请输入" style="display: block;margin-top: 15px;" autosize border="{{ false }}" />
+
+        <!-- <van-field type='number' model:value="{{ waterAmount }}" label="饮水量" placeholder="请输入" style="display: block;margin-top: 10px;" />
+        <van-field type='number' model:value="{{ weight }}" label="体重" placeholder="请输入" style="display: block;margin-top: 10px;" /> -->
+        
         <!-- <van-cell title="商品类型" is-link value="{{vaa}}" arrow-direction="down" bind:click="toggleBottomPopup" style="display: block;margin-top: 10px;" /> -->
+        
         <!-- <van-radio-group value="{{ radio }}" bind:change="onChange">
             <van-cell-group>
                 <van-cell title="上架" clickable data-name="1" bind:click="onClick">
