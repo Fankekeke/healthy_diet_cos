@@ -167,17 +167,7 @@ export default {
         dataIndex: 'heat',
         customRender: (text, row, index) => {
           if (text !== null) {
-            return text + '卡'
-          } else {
-            return '- -'
-          }
-        }
-      }, {
-        title: '运动时间',
-        dataIndex: 'sportTime',
-        customRender: (text, row, index) => {
-          if (text !== null) {
-            return text + '分钟'
+            return text + '卡/分钟'
           } else {
             return '- -'
           }

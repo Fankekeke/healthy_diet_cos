@@ -63,6 +63,8 @@ public class WebController {
 
     private final ISportTypeInfoService sportTypeInfoService;
 
+    private final IDietRecordInfoService dietRecordInfoService;
+
     @PostMapping("/userAdd")
     public R userAdd(@RequestBody UserInfo user) throws Exception {
         String url = "https://api.weixin.qq.com/sns/jscode2session";
@@ -555,5 +557,39 @@ public class WebController {
     @GetMapping("/deleteSport")
     public R deleteSport(@RequestParam("postId") Integer postId) {
         return R.ok(sportTypeInfoService.removeById(postId));
+    }
+
+    @GetMapping("/queryDishesRecordListById")
+    public R queryDishesRecordListById(@RequestParam("userId") Integer userId) {
+        DietRecordInfo dietRecordInfo = new DietRecordInfo();
+        dietRecordInfo.setUserId(userId);
+        return R.ok(dietRecordInfoService.queryDietRecord(dietRecordInfo));
+    }
+
+    @GetMapping("/deleteDishesRecord")
+    public R deleteDishesRecord(@RequestParam("postId") Integer postId) {
+        return R.ok(dietRecordInfoService.removeById(postId));
+    }
+
+    @GetMapping("/querySportRecordListById")
+    public R querySportRecordListById(@RequestParam("userId") Integer userId) {
+        WeightRecordInfo weightRecordInfo = new WeightRecordInfo();
+        weightRecordInfo.setUserId(userId);
+        return R.ok(weightRecordInfoService.querySportRecord(weightRecordInfo));
+    }
+
+    @GetMapping("/deleteSportRecord")
+    public R deleteSportRecord(@RequestParam("postId") Integer postId) {
+        return R.ok(weightRecordInfoService.removeById(postId));
+    }
+
+    @GetMapping("/queryHeatByUserToday")
+    public R queryHeatByUserToday(@RequestParam("userId") Integer userId) {
+        return R.ok(weightRecordInfoService.queryHeatByUserToday(userId));
+    }
+
+    @GetMapping("/selectRateWithDays")
+    public R selectRateWithDays(@RequestParam("userId") Integer userId) {
+        return R.ok(weightRecordInfoService.selectRateWithDays(userId));
     }
 }

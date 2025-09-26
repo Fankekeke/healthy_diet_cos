@@ -13,14 +13,6 @@
                 <a-input v-model="queryParams.userName"/>
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="24">
-              <a-form-item
-                label="内容"
-                :labelCol="{span: 5}"
-                :wrapperCol="{span: 18, offset: 1}">
-                <a-input v-model="queryParams.content"/>
-              </a-form-item>
-            </a-col>
           </div>
           <span style="float: right; margin-top: 3px;">
             <a-button type="primary" @click="search">查询</a-button>
@@ -155,17 +147,6 @@ export default {
           }
         }
       }, {
-        title: '饮水量',
-        dataIndex: 'waterAmount',
-        ellipsis: true,
-        customRender: (text, row, index) => {
-          if (text !== null) {
-            return text + '毫升'
-          } else {
-            return '- -'
-          }
-        }
-      }, {
         title: '运动名称',
         dataIndex: 'sportName',
         ellipsis: true,
@@ -177,7 +158,7 @@ export default {
           }
         }
       }, {
-        title: '运动量',
+        title: '消耗热量',
         dataIndex: 'sportAmount',
         customRender: (text, row, index) => {
           if (text !== null) {
@@ -206,10 +187,6 @@ export default {
             return '- -'
           }
         }
-      }, {
-        title: '操作',
-        dataIndex: 'operation',
-        scopedSlots: {customRender: 'operation'}
       }]
     }
   },

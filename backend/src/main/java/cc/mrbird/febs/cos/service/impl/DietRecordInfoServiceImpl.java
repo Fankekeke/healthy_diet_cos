@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author FanK
@@ -26,5 +27,16 @@ public class DietRecordInfoServiceImpl extends ServiceImpl<DietRecordInfoMapper,
     @Override
     public IPage<LinkedHashMap<String, Object>> queryDietRecordPage(Page<DietRecordInfo> page, DietRecordInfo dietRecordInfo) {
         return baseMapper.queryDietRecordPage(page, dietRecordInfo);
+    }
+
+    /**
+     * 查询饮食记录
+     *
+     * @param dietRecordInfo 参数
+     * @return 结果
+     */
+    @Override
+    public List<LinkedHashMap<String, Object>> queryDietRecord(DietRecordInfo dietRecordInfo) {
+        return baseMapper.queryDietRecord(dietRecordInfo);
     }
 }

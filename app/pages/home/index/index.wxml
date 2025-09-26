@@ -60,7 +60,7 @@
         <view class='action' style="font-size: 27rpx;"> 更多 <view class='icon-right'></view> </view>
     </navigator> -->
 </view>
-<view class="bg-white" style="padding:0 30rpx;padding-bottom: 20rpx;">
+<!-- <view class="bg-white" style="padding:0 30rpx;padding-bottom: 20rpx;">
     <view class='nav-list canui-flex-car'>
 
         <navigator wx:for="{{postInfo}}" open-type="navigate" hover-class='none' data-postId='{{item.id}}' bindtap='postDetail' class="nav-li canui-yx-url">
@@ -85,7 +85,7 @@
         </navigator>
 
     </view>
-</view>
+</view> -->
 
 <!--论坛-->
 <!-- <view class="cu-bar bg-white solid-bottom margin-top">

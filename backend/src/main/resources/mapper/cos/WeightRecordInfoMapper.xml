@@ -32,6 +32,35 @@
         order by wri.create_date desc
     </select>
 
+    <select id="querySportRecord" resultType="java.util.LinkedHashMap">
+        select wri.id,
+        wri.user_id,
+        wri.water_amount,
+        wri.sport_amount,
+        wri.sport_name,
+        wri.sport_time,
+        wri.weight,
+        wri.content,
+        wri.create_date,
+        ui.name as userName,
+        ui.code as userCode,
+        ui.images as userImages
+        from weight_record_info wri
+        left join user_info ui on
+        (ui.id = wri.user_id)
+        where 1 = 1
+        <if test="weightRecordInfo.userName != null and weightRecordInfo.userName != ''">
+            AND ui.name LIKE CONCAT('%',#{weightRecordInfo.userName},'%')
+        </if>
+        <if test="weightRecordInfo.sportName != null and weightRecordInfo.sportName != ''">
+            AND wri.sport_name LIKE CONCAT('%',#{weightRecordInfo.sportName},'%')
+        </if>
+        <if test="weightRecordInfo.userId != null and weightRecordInfo.userId != ''">
+            AND wri.user_id = #{weightRecordInfo.userId}
+        </if>
+        order by wri.create_date desc
+    </select>
+
     <!-- 十天内卡路里摄入统计 -->
     <select id="selectCaloriesWithinDays" resultType="java.util.LinkedHashMap">
         SELECT

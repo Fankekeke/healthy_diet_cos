@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author FanK
@@ -21,4 +22,12 @@ public interface DietRecordInfoMapper extends BaseMapper<DietRecordInfo> {
      * @return 结果
      */
     IPage<LinkedHashMap<String, Object>> queryDietRecordPage(Page<DietRecordInfo> page, @Param("dietRecordInfo") DietRecordInfo dietRecordInfo);
+
+    /**
+     * 查询饮食记录
+     *
+     * @param dietRecordInfo 参数
+     * @return 结果
+     */
+    List<LinkedHashMap<String, Object>> queryDietRecord(@Param("dietRecordInfo") DietRecordInfo dietRecordInfo);
 }

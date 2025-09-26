@@ -47,7 +47,7 @@
             </view>
         </view>
         <view wx:if="{{ orderList.length === 0 }}">
-            <van-empty style="height: 400px;margin: 0 auto" description="无商品信息" />
+            <van-empty style="height: 400px;margin: 0 auto" description="无记录" />
         </view>
     </view>
 </view>

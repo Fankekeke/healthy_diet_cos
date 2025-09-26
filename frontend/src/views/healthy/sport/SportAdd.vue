@@ -19,18 +19,10 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label='热量含量' v-bind="formItemLayout">
+          <a-form-item label='消耗热量 卡/分钟' v-bind="formItemLayout">
             <a-input-number style="width: 100%" v-decorator="[
             'heat',
             { rules: [{ required: true, message: '请输入热量含量!' }] }
-            ]" :min="0.1" :step="0.1"/>
-          </a-form-item>
-        </a-col>
-        <a-col :span="12">
-          <a-form-item label='运动时间（分钟）' v-bind="formItemLayout">
-            <a-input-number style="width: 100%" v-decorator="[
-            'sportTime',
-            { rules: [{ required: true, message: '请输入运动时间!' }] }
             ]" :min="0.1" :step="0.1"/>
           </a-form-item>
         </a-col>

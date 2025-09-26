@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author FanK
@@ -21,6 +22,14 @@ public interface IWeightRecordInfoService extends IService<WeightRecordInfo> {
      * @return 结果
      */
     IPage<LinkedHashMap<String, Object>> queryWeightPage(Page<WeightRecordInfo> page, WeightRecordInfo weightRecordInfo);
+
+    /**
+     * 运动记录查询
+     *
+     * @param weightRecordInfo 参数
+     * @return 结果
+     */
+    List<LinkedHashMap<String, Object>> querySportRecord(@Param("weightRecordInfo") WeightRecordInfo weightRecordInfo);
 
     /**
      * 获取数据统计

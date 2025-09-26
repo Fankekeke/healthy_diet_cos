@@ -86,7 +86,7 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: (res) => {
-        if (this.data.name == '' || this.data.sportTime == 0 || this.data.heat == 0) {
+        if (this.data.name == '' || this.data.heat == 0) {
           wx.showToast({
             title: '请完整填写！',
             icon: 'error',

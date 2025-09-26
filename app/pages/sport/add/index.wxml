@@ -12,7 +12,7 @@
     <view style="padding: 20px;display: block">
         <van-field model:value="{{ name }}" label="运动名称" placeholder="请输入" style="display: block;margin-top: 10px;" />
         <van-field type='number' model:value="{{ heat }}" label="消耗热量" placeholder="请输入" style="display: block;margin-top: 10px;" />
-        <van-field type='number' model:value="{{ sportTime }}" label="运动时间" placeholder="请输入（分钟）" style="display: block;margin-top: 10px;" />
+        <!-- <van-field type='number' model:value="{{ sportTime }}" label="运动时间" placeholder="请输入（分钟）" style="display: block;margin-top: 10px;" /> -->
         <van-field model:value="{{ content }}" label="运动备注" type="textarea" placeholder="请输入" style="display: block;margin-top: 15px;" autosize border="{{ false }}" />
 
         <!-- <van-field type='number' model:value="{{ waterAmount }}" label="饮水量" placeholder="请输入" style="display: block;margin-top: 10px;" />

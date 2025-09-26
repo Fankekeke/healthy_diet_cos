@@ -54,10 +54,10 @@
         "text": "报警"
       },
       {
-        "pagePath": "pages/check/index/index",
+        "pagePath": "pages/coupon/index/index",
         "iconPath": "img/message.png",
         "selectedIconPath": "img/message1.png",
-        "text": "课程"
+        "text": "社区"
       },
       {
         "pagePath": "pages/user/index/index",

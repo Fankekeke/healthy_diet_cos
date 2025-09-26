@@ -44,6 +44,17 @@ public class WeightRecordInfoServiceImpl extends ServiceImpl<WeightRecordInfoMap
     }
 
     /**
+     * 运动记录查询
+     *
+     * @param weightRecordInfo 参数
+     * @return 结果
+     */
+    @Override
+    public List<LinkedHashMap<String, Object>> querySportRecord(WeightRecordInfo weightRecordInfo) {
+        return baseMapper.querySportRecord(weightRecordInfo);
+    }
+
+    /**
      * 获取数据统计
      *
      * @param userId 用户ID
@@ -56,7 +67,7 @@ public class WeightRecordInfoServiceImpl extends ServiceImpl<WeightRecordInfoMap
             {
                 put("caloriesIn", baseMapper.selectCaloriesWithinDays(userId));
                 put("caloriesOut", baseMapper.selectCaloriesWithoutDays(userId));
-                put("weight", baseMapper.selectWeightWithinDays(userId));
+//                put("weight", baseMapper.selectWeightWithinDays(userId));
             }
         };
         return result;

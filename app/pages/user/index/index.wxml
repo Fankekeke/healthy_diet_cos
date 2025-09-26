@@ -26,12 +26,12 @@
             <text class='text-grey'>我的消息</text>
         </navigator>
     </view>
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/coupon/index/index">
             <text class='icon-ticket text-red'></text>
             <text class='text-grey'>社区论坛</text>
         </navigator>
-    </view>
+    </view> -->
     <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/address/edit/index">
             <text class='icon-location text-orange'></text>
@@ -46,7 +46,7 @@
     </view>
     <view class="cu-item arrow">
         <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/weight/index">
-            <text class='icon-file text-green'></text>
+            <text class='icon-text text-green'></text>
             <text class='text-grey'>我的菜品</text>
         </navigator>
     </view>
@@ -57,9 +57,15 @@
         </navigator>
     </view>
     <view class="cu-item arrow">
-        <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/help/index">
+        <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/dishesRecord/index">
             <text class='icon-add text-green'></text>
-            <text class='text-grey'>帮助服务</text>
+            <text class='text-grey'>饮食记录</text>
+        </navigator>
+    </view>
+    <view class="cu-item arrow">
+        <navigator class='content' open-type="navigate" hover-class='none' url="/pages/user/sportRecord/index">
+            <text class='icon-ticket text-green'></text>
+            <text class='text-grey'>运动记录</text>
         </navigator>
     </view>
 </view>

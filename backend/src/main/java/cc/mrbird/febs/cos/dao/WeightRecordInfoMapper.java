@@ -24,6 +24,14 @@ public interface WeightRecordInfoMapper extends BaseMapper<WeightRecordInfo> {
     IPage<LinkedHashMap<String, Object>> queryWeightPage(Page<WeightRecordInfo> page, @Param("weightRecordInfo") WeightRecordInfo weightRecordInfo);
 
     /**
+     * 运动记录查询
+     *
+     * @param weightRecordInfo 参数
+     * @return 结果
+     */
+    List<LinkedHashMap<String, Object>> querySportRecord(@Param("weightRecordInfo") WeightRecordInfo weightRecordInfo);
+
+    /**
      * 十天内卡路里摄入统计
      *
      * @return 结果
