@@ -1,0 +1,270 @@
+page {
+    padding-top: 50px;
+    padding-bottom:170rpx;
+}
+.cu-custom{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+}
+.cu-custom .cu-bar{
+    padding-right:inherit;
+    background-image:linear-gradient(45deg, #31c4ae, #086b5c);
+}
+.box{
+    position: absolute;
+    top: 64px;
+    width: 100%;
+}
+
+.cu-card.article>.cu-item {
+    padding-bottom:0rpx;
+}
+.cu-card.article>.cu-item .content {
+    padding:0;
+}
+.cu-card.article>.cu-item .content>.canui-left-box{
+    width:240rpx;
+    height:6.4em;
+    margin-right:20rpx;
+    text-align:center;
+}
+.canui-left-box .canui-co-xl-price{
+    font-size:50rpx;
+    margin-top:1em;
+    line-height:1.2em;
+}
+.canui-left-box .canui-co-price{
+    font-size:22rpx;
+    color: #f1f1f1;
+}
+.cu-card.article>.cu-item .content .desc {
+    padding:30rpx 0;
+}
+.canui-co-time{
+    font-size:25rpx;
+}
+.canui-foor-fixed{
+    text-align:center;
+    bottom:20rpx;
+}
+
+/**/
+.sport-selection-container {
+    padding: 20rpx;
+}
+
+.sport-item {
+    margin-bottom: 30rpx;
+    border-radius: 16rpx;
+    box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.sport-content {
+    background: #fff;
+}
+
+.sport-header {
+    padding: 20rpx;
+    border-bottom: 1rpx solid #f0f0f0;
+}
+
+.sport-name {
+    font-size: 32rpx;
+    font-weight: bold;
+    color: #333;
+}
+
+.sport-details {
+    display: flex;
+    padding: 20rpx;
+}
+
+.sport-image {
+    width: 200rpx;
+    height: 160rpx;
+    border-radius: 12rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+}
+
+.sport-image image {
+    width: 100%;
+    height: 100%;
+}
+
+.sport-info {
+    flex: 1;
+}
+
+.sport-meta {
+    margin-bottom: 15rpx;
+}
+
+.meta-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10rpx;
+}
+
+.meta-label {
+    font-size: 24rpx;
+    color: #666;
+}
+
+.meta-value {
+    font-size: 24rpx;
+    font-weight: bold;
+    color: #333;
+}
+
+.sport-description {
+    margin-top: 10rpx;
+}
+
+.description-text {
+    font-size: 22rpx;
+    color: #999;
+}
+
+.sport-actions {
+    padding: 20rpx;
+    text-align: center;
+    border-top: 1rpx solid #f0f0f0;
+}
+
+.selected-sports-container {
+    padding: 20rpx;
+}
+
+.selected-sport-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #f0f0f0;
+}
+
+.sport-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.sport-name {
+    font-size: 28rpx;
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+.sport-meta-inline {
+    display: flex;
+}
+
+.sport-calories {
+    font-size: 24rpx;
+    color: #fa541c;
+    margin-right: 15rpx;
+}
+
+.sport-duration {
+    font-size: 24rpx;
+    color: #1890ff;
+}
+
+.total-calories {
+    padding: 20rpx;
+    background: #f8f9fa;
+    border-radius: 12rpx;
+    margin: 20rpx 0;
+}
+
+.total-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.total-label {
+    font-size: 26rpx;
+    color: #333;
+}
+
+.total-value {
+    font-size: 26rpx;
+    font-weight: bold;
+    color: #fa541c;
+}
+
+.submit-section {
+    padding: 20rpx 0;
+}
+
+.time-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15rpx;
+}
+
+.time-label {
+    font-size: 26rpx;
+    color: #333;
+    margin-right: 15rpx;
+}
+
+.time-input {
+    flex: 1;
+    border: 1rpx solid #e0e0e0;
+    border-radius: 8rpx;
+    padding: 10rpx 15rpx;
+    font-size: 26rpx;
+}
+
+.time-unit {
+    font-size: 26rpx;
+    color: #666;
+    margin-left: 10rpx;
+}
+
+.time-input-container {
+    display: flex;
+    align-items: center;
+    margin: 20rpx 0;
+    padding: 15rpx 20rpx;
+    background-color: #f8f9fa;
+    border-radius: 12rpx;
+    border: 1rpx solid #e9ecef;
+}
+
+.time-label {
+    font-size: 26rpx;
+    color: #495057;
+    font-weight: 500;
+    margin-right: 15rpx;
+    flex-shrink: 0;
+}
+
+.time-input {
+    flex: 1;
+    border: 1rpx solid #ced4da;
+    border-radius: 8rpx;
+    padding: 12rpx 15rpx;
+    font-size: 26rpx;
+    background-color: #fff;
+    text-align: center;
+    transition: all 0.3s;
+    box-sizing: content-box;
+}
+
+.time-input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2rpx rgba(76, 175, 80, 0.2);
+    outline: none;
+}
+
+.time-unit {
+    font-size: 26rpx;
+    color: #6c757d;
+    margin-left: 15rpx;
+    flex-shrink: 0;
+    font-weight: 500;
+}

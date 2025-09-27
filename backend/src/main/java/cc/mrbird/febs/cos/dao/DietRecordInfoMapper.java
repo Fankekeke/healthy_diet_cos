@@ -30,4 +30,12 @@ public interface DietRecordInfoMapper extends BaseMapper<DietRecordInfo> {
      * @return 结果
      */
     List<LinkedHashMap<String, Object>> queryDietRecord(@Param("dietRecordInfo") DietRecordInfo dietRecordInfo);
+
+    /**
+     * 查询今日饮食记录
+     *
+     * @param userId 用户ID
+     * @return 结果
+     */
+    List<DietRecordInfo> queryRecordByToday(@Param("userId") Integer userId);
 }

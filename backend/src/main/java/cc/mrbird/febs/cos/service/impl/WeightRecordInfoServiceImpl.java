@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.service.impl;
 
+import cc.mrbird.febs.cos.dao.DietRecordInfoMapper;
 import cc.mrbird.febs.cos.entity.DietRecordInfo;
 import cc.mrbird.febs.cos.entity.NutritionRuleInfo;
 import cc.mrbird.febs.cos.entity.WeightRecordInfo;
@@ -30,6 +31,8 @@ public class WeightRecordInfoServiceImpl extends ServiceImpl<WeightRecordInfoMap
     private final IDietRecordInfoService dietRecordInfoService;
 
     private final INutritionRuleInfoService nutritionRuleInfoService;
+
+    private final DietRecordInfoMapper dietRecordInfoMapper;
 
     /**
      * 分页查询体重记录信息
@@ -82,7 +85,7 @@ public class WeightRecordInfoServiceImpl extends ServiceImpl<WeightRecordInfoMap
     @Override
     public LinkedHashMap<String, Object> queryHeatByUserToday(Integer userId) {
         // 获取用户今日饮食记录
-        List<DietRecordInfo> dietRecordInfoList = dietRecordInfoService.list(Wrappers.<DietRecordInfo>lambdaQuery().eq(DietRecordInfo::getUserId, userId));
+        List<DietRecordInfo> dietRecordInfoList = dietRecordInfoMapper.queryRecordByToday(userId);
 
         // 查询营养规则
         NutritionRuleInfo rule = nutritionRuleInfoService.getById(1);

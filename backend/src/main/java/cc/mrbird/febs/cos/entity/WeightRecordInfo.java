@@ -72,5 +72,12 @@ public class WeightRecordInfo implements Serializable {
     @TableField(exist = false)
     private Integer sportId;
 
+    @TableField(exist = false)
+    private String record;
+    @TableField(exist = false)
+    private String name;
+    @TableField(exist = false)
+    private BigDecimal heat;
+
 
 }

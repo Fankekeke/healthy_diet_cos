@@ -1,0 +1,107 @@
+<!-- 状态栏区域 -->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action canui-head-title' open-type="navigateBack" hover-class="none">
+            <text class='icon-back'></text>
+            添加饮食记录
+        </navigator>
+    </view>
+</view>
+<view class="box" style="top: {{CustomBar}}px;">
+    <view class="cu-card article">
+        <view class="cu-card case no-card">
+            <view class="bg-white" style="padding:5rpx 0rpx;">
+                <!-- 菜品选择列表 -->
+                <view class="dishes-selection-container bg-white" wx:if="{{dishesList.length > 0}}">
+                    <view class="dishes-list">
+                        <view class="dish-item" wx:for="{{dishesList}}" wx:key="id">
+                            <view class="dish-content">
+                                <view class="dish-header">
+                                    <view class="dish-name">{{item.name}}</view>
+                                    <view class="dish-creator">by {{item.userName}}</view>
+                                </view>
+
+                                <view class="dish-details">
+                                    <view class="dish-image">
+                                        <image src="http://127.0.0.1:9527/imagesWeb/{{item.images}}" mode="aspectFill" />
+                                    </view>
+
+                                    <view class="dish-info">
+                                        <view class="nutrient-info">
+                                            <view class="nutrient-item">
+                                                <text class="nutrient-label">热量:</text>
+                                                <text class="nutrient-value">{{item.heat}}卡</text>
+                                            </view>
+                                            <view class="nutrient-item">
+                                                <text class="nutrient-label">蛋白质:</text>
+                                                <text class="nutrient-value">{{item.protein}}g</text>
+                                            </view>
+                                            <view class="nutrient-item">
+                                                <text class="nutrient-label">脂肪:</text>
+                                                <text class="nutrient-value">{{item.fat}}g</text>
+                                            </view>
+                                        </view>
+
+                                        <view class="dish-tags">
+                                            <view class="tag taste-tag">{{item.taste}}</view>
+                                            <view class="tag portion-tag">{{item.portion}}g</view>
+                                        </view>
+                                    </view>
+                                </view>
+
+                                <view class="dish-actions">
+                                    <button class="cu-btn round bg-gradual-green" bindtap="selectDish" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-protein="{{item.protein}}" data-fat="{{item.fat}}">
+                                        选择此菜
+                                    </button>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+                <!-- 已选菜品展示 -->
+                <view class="selected-dishes-container bg-white margin-top" wx:if="{{selectedDishes.length > 0}}">
+                    <view class="cu-bar bg-white solid-bottom">
+                        <view class='action'>
+                            <text class='icon-title text-green'></text>
+                            <text>已选菜品</text>
+                        </view>
+                    </view>
+
+                    <view class="selected-dishes-list">
+                        <view class="selected-dish-item" wx:for="{{selectedDishes}}" wx:key="id">
+                            <view class="dish-summary">
+                                <text class="dish-name">{{item.name}}</text>
+                                <text class="dish-calories">{{item.heat}}卡</text>
+                            </view>
+                            <view class="remove-action">
+                                <button class="cu-btn round line-red sm" bindtap="removeDish" data-id="{{item.id}}">删除</button>
+                            </view>
+                        </view>
+                    </view>
+
+                    <view class="total-nutrition">
+                        <view class="total-item">
+                            <text class="total-label">总热量:</text>
+                            <text class="total-value">{{totalNutrition.totalHeat}}卡</text>
+                        </view>
+                        <view class="total-item">
+                            <text class="total-label">总蛋白质:</text>
+                            <text class="total-value">{{totalNutrition.totalProtein}}g</text>
+                        </view>
+                        <view class="total-item">
+                            <text class="total-label">总脂肪:</text>
+                            <text class="total-value">{{totalNutrition.totalFat}}g</text>
+                        </view>
+                    </view>
+
+                    <view class="submit-section">
+                        <button class="cu-btn bg-gradual-blue shadow-blur block lg" bindtap="submitSelectedDishes">
+                            提交今日饮食
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -9,6 +9,7 @@ import cc.mrbird.febs.cos.service.*;
 import cc.mrbird.febs.system.service.UserService;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.NumberUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
@@ -591,5 +592,78 @@ public class WebController {
     @GetMapping("/selectRateWithDays")
     public R selectRateWithDays(@RequestParam("userId") Integer userId) {
         return R.ok(weightRecordInfoService.selectRateWithDays(userId));
+    }
+
+    /**
+     * 根据用户查询菜品信息
+     *
+     * @param userId 用户id
+     * @return 结果
+     */
+    @GetMapping("/dishes/list/all")
+    public R queryDishesByUserId(Integer userId) {
+        List<DishesInfo> dishesInfoList = dishesInfoService.list(Wrappers.<DishesInfo>lambdaQuery().isNull(DishesInfo::getUserId));
+        for (DishesInfo dishesInfo1 : dishesInfoList) {
+            dishesInfo1.setUserName("系统食谱");
+        }
+        List<DishesInfo> userDishesList = dishesInfoService.queryDishesByUserId(userId);
+        // dishesInfoList和userDishesList合并
+        dishesInfoList.addAll(userDishesList);
+        return R.ok(dishesInfoList);
+    }
+
+    /**
+     * 根据用户查询运动种类信息
+     *
+     * @param userId 用户id
+     * @return 结果
+     */
+    @GetMapping("/sport/list/all")
+    public R querySportByUserId(Integer userId) {
+        List<SportTypeInfo> sportTypeInfoList = sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().isNull(SportTypeInfo::getUserId));
+        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getUserId, userId));
+        if (userInfo != null) {
+            List<SportTypeInfo> sportTypeInfoList1 = sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().eq(SportTypeInfo::getUserId, userInfo.getId()));
+            sportTypeInfoList.addAll(sportTypeInfoList1);
+        }
+        return R.ok(sportTypeInfoList);
+    }
+
+    /**
+     * 添加饮食记录
+     *
+     * @param dietRecordInfo 饮食记录信息
+     * @return 添加结果
+     */
+    @PostMapping("/addDishesRecord")
+    public R addDishesRecord(@RequestBody DietRecordInfo dietRecordInfo) {
+        dietRecordInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        List<DietRecordInfo> dietRecordInfoList = JSONUtil.toList(dietRecordInfo.getRecord(), DietRecordInfo.class);
+        for (DietRecordInfo record : dietRecordInfoList) {
+            record.setDishesId(record.getId());
+            record.setUserId(dietRecordInfo.getUserId());
+            record.setCreateDate(dietRecordInfo.getCreateDate());
+        }
+        return R.ok(dietRecordInfoService.saveBatch(dietRecordInfoList));
+    }
+
+    /**
+     * 添加运动记录
+     *
+     * @param weightRecordInfo 运动记录信息
+     * @return 添加结果
+     */
+    @PostMapping("/addSportRecord")
+    public R addSportRecord(@RequestBody WeightRecordInfo weightRecordInfo) {
+        weightRecordInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        List<WeightRecordInfo> weightRecordInfoList = JSONUtil.toList(weightRecordInfo.getRecord(), WeightRecordInfo.class);
+        for (WeightRecordInfo record : weightRecordInfoList) {
+            record.setUserId(weightRecordInfo.getUserId());
+            record.setCreateDate(weightRecordInfo.getCreateDate());
+            record.setSportAmount(NumberUtil.mul(record.getHeat(), record.getSportTime()));
+            record.setSportName(record.getName());
+            record.setContent(record.getName() + "-" + record.getSportTime() + "分钟");
+        }
+        return R.ok(weightRecordInfoService.saveBatch(weightRecordInfoList));
     }
 }

@@ -87,3 +87,288 @@ page {
     width: 100%;
     z-index:999999;
 }
+
+/**/
+.daily-nutrition-container {
+    background: linear-gradient(135deg, #31c4ae 0%, #086b5c 100%);
+    border-radius: 16rpx;
+    padding: 30rpx;
+    margin: 10rpx 15rpx;
+    box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+}
+
+.nutrition-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nutrition-item-inline {
+    flex: 1;
+    text-align: center;
+    padding: 0 10rpx;
+}
+
+.nutrition-label {
+    font-size: 24rpx;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 10rpx;
+}
+
+.nutrition-values {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 8rpx;
+}
+
+.current-value {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.unit {
+    font-size: 20rpx;
+    color: #f0f0f0;
+    margin-left: 6rpx;
+}
+
+.recommend-info {
+    font-size: 20rpx;
+    color: #e0e0e0;
+}
+
+.recommend-value {
+    color: #ffeb3b;
+    font-weight: 500;
+}
+
+/**/
+.calories-chart-container {
+    padding: 20rpx;
+}
+
+.chart-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+}
+
+.chart-content {
+    display: flex;
+    flex-direction: row;
+    height: 280rpx;
+    margin-bottom: 40rpx;
+}
+
+.y-axis-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60rpx;
+    height: 100%;
+    margin-right: 10rpx;
+}
+
+.y-label {
+    font-size: 20rpx;
+    color: #666666;
+}
+
+.chart-bars {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 100%;
+    border-left: 1rpx solid #e0e0e0;
+    border-bottom: 1rpx solid #e0e0e0;
+    padding-bottom: 10rpx;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    height: 100%;
+}
+
+.bar-container {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    padding: 0 5rpx;
+}
+
+.bar {
+    width: 100%;
+    border-radius: 6rpx 6rpx 0 0;
+    min-height: 4rpx;
+    transition: height 0.3s ease;
+}
+
+.bar-label {
+    font-size: 18rpx;
+    color: #333333;
+    margin-top: 10rpx;
+    transform: scale(0.9);
+}
+
+.x-axis-label {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20rpx;
+}
+
+.x-label {
+    font-size: 20rpx;
+    color: #666666;
+}
+
+
+/**/
+.calories-line-chart-container {
+    padding: 20rpx;
+    background-color: #fff;
+}
+
+.line-chart-wrapper {
+    margin-top: 20rpx;
+}
+
+.chart-title {
+    text-align: center;
+    margin-bottom: 20rpx;
+}
+
+.title-text {
+    font-size: 24rpx;
+    color: #333;
+}
+
+.line-chart-content {
+    display: flex;
+    flex-direction: row;
+    height: 300rpx;
+    margin-bottom: 20rpx;
+}
+
+.y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60rpx;
+    height: 100%;
+    margin-right: 10rpx;
+    padding: 10rpx 0;
+}
+
+.y-label {
+    font-size: 18rpx;
+    color: #666;
+    text-align: right;
+    padding-right: 10rpx;
+}
+
+.chart-area {
+    flex: 1;
+    position: relative;
+    border-left: 1rpx solid #e0e0e0;
+    border-bottom: 1rpx solid #e0e0e0;
+}
+
+.grid-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1rpx;
+    background-color: #f0f0f0;
+}
+
+.grid-line:nth-child(1) { top: 0%; }
+.grid-line:nth-child(2) { top: 20%; }
+.grid-line:nth-child(3) { top: 40%; }
+.grid-line:nth-child(4) { top: 60%; }
+.grid-line:nth-child(5) { top: 80%; }
+.grid-line:nth-child(6) { top: 100%; }
+
+.line-path {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.line-segment {
+    position: absolute;
+    height: 4rpx;
+    background-color: #FF9800;
+    transform-origin: left center;
+    z-index: 1;
+}
+
+.data-points {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.data-point {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.point-inner {
+    width: 16rpx;
+    height: 16rpx;
+    border-radius: 50%;
+    border: 4rpx solid #fff;
+    box-shadow: 0 0 4rpx rgba(0, 0, 0, 0.2);
+}
+
+.point-value {
+    font-size: 18rpx;
+    color: #333;
+    margin-top: 10rpx;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rpx 8rpx;
+    border-radius: 6rpx;
+}
+
+.x-axis {
+    margin-left: 70rpx;
+    padding: 0 10rpx;
+}
+
+.x-labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.x-label {
+    font-size: 18rpx;
+    color: #666;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+

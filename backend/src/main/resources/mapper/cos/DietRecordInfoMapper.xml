@@ -82,4 +82,9 @@
         order by
         dri.create_date desc
     </select>
+
+    <!-- 获取用户今日饮食记录 -->
+    <select id="queryRecordByToday" resultType="cc.mrbird.febs.cos.entity.DietRecordInfo">
+        select * from diet_record_info dri where dri.user_id = #{userId} and DATE_FORMAT( dri.create_date, '%Y-%m-%d' ) = DATE_FORMAT( curDate(), '%Y-%m-%d' )
+    </select>
 </mapper>

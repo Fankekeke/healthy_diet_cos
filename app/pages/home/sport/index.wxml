@@ -1,0 +1,116 @@
+<!-- 状态栏区域 -->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar fixed none-bg text-white bg-img" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action canui-head-title' open-type="navigateBack" hover-class="none">
+            <text class='icon-back'></text>
+            添加运动记录
+        </navigator>
+    </view>
+</view>
+<view class="box" style="top: {{CustomBar}}px;">
+    <view class="cu-card article">
+        <view class="cu-card case no-card">
+            <view class="bg-white" style="padding:5rpx 0rpx;">
+                <!-- 运动选择列表 -->
+                <view class="sport-selection-container bg-white" wx:if="{{sportList.length > 0}}">
+                    <view class="cu-bar bg-white solid-bottom">
+                        <view class='action'>
+                            <text class='icon-title text-blue'></text>
+                            <text>运动项目选择</text>
+                        </view>
+                    </view>
+
+                    <view class="sport-list">
+                        <view class="sport-item" wx:for="{{sportList}}" wx:key="id">
+                            <view class="sport-content">
+                                <view class="sport-header">
+                                    <view class="sport-name">{{item.name}}</view>
+                                </view>
+
+                                <view class="sport-details">
+                                    <view class="sport-image">
+                                        <image src="http://127.0.0.1:9527/imagesWeb/{{item.images}}" mode="aspectFill" />
+                                    </view>
+
+                                    <view class="sport-info">
+                                        <view class="sport-meta">
+                                            <view class="meta-item">
+                                                <text class="meta-label">消耗热量:</text>
+                                                <text class="meta-value">{{item.heat}}卡</text>
+                                            </view>
+                                            <view class="meta-item">
+                                                <text class="meta-label">运动时长:</text>
+                                                <text class="meta-value">{{item.sportTime}}分钟</text>
+                                            </view>
+                                        </view>
+
+                                        <view class="sport-description">
+                                            <text class="description-text">{{item.content}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+
+                                <view class="sport-actions">
+                                    <view class="time-input-container">
+                                        <text class="time-label">运动时长:</text>
+                                        <input
+                                                class="time-input"
+                                                type="number"
+                                                placeholder="请输入分钟数"
+                                                bindinput="onTimeInput"
+                                                data-id="{{item.id}}"
+                                                value="{{item.userTime || item.sportTime}}" />
+                                        <text class="time-unit">分钟</text>
+                                    </view>
+                                    <button class="cu-btn round bg-gradual-blue" bindtap="selectSport" data-id="{{item.id}}" data-name="{{item.name}}" data-heat="{{item.heat}}" data-time="{{item.sportTime}}">
+                                        选择此运动
+                                    </button>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+                <!-- 已选运动展示 -->
+                <view class="selected-sports-container bg-white margin-top" wx:if="{{selectedSports.length > 0}}">
+                    <view class="cu-bar bg-white solid-bottom">
+                        <view class='action'>
+                            <text class='icon-title text-green'></text>
+                            <text>已选运动</text>
+                        </view>
+                    </view>
+
+                    <view class="selected-sports-list">
+                        <view class="selected-sport-item" wx:for="{{selectedSports}}" wx:key="id">
+                            <view class="sport-summary">
+                                <text class="sport-name">{{item.name}}</text>
+                                <view class="sport-meta-inline">
+                                    <text class="sport-calories">{{item.heat}}卡</text>
+                                    <text class="sport-duration">{{item.sportTime}}分钟</text>
+                                </view>
+                            </view>
+                            <view class="remove-action">
+                                <button class="cu-btn round line-red sm" bindtap="removeSport" data-id="{{item.id}}">删除</button>
+                            </view>
+                        </view>
+                    </view>
+
+                    <view class="total-calories">
+                        <view class="total-item">
+                            <text class="total-label">总消耗热量:</text>
+                            <text class="total-value">{{totalCalories}}卡</text>
+                        </view>
+                    </view>
+                    <view>
+
+                    </view>
+                    <view class="submit-section">
+                        <button class="cu-btn bg-gradual-green shadow-blur block lg" bindtap="submitSelectedSports">
+                            提交运动记录
+                        </button>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

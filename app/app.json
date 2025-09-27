@@ -48,12 +48,6 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/alert/index/index",
-        "iconPath": "img/alert.png",
-        "selectedIconPath": "img/alert1.png",
-        "text": "报警"
-      },
-      {
         "pagePath": "pages/coupon/index/index",
         "iconPath": "img/message.png",
         "selectedIconPath": "img/message1.png",

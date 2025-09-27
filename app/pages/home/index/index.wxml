@@ -51,15 +51,158 @@
 <!-- <video class="canui-video shadow-warp bg-white" src="{{videosrc}}"></video> -->
 
 <!--热销推荐-->
-<view class="cu-bar bg-white margin-top solid-bottom">
-    <view class='action'>
-        <text class='icon-title text-green'></text>
-        <text>热门</text>
+<view wx:if="{{userInfo !== null}}">
+
+    <view class="cu-bar bg-white margin-top solid-bottom">
+        <view class='action'>
+            <text class='icon-title text-green'></text>
+            <text>本日摄入</text>
+        </view>
+        <!-- <navigator hover-class='none' url="/pages/home/groom/index">
+            <view class='action' style="font-size: 27rpx;"> 更多 <view class='icon-right'></view> </view>
+        </navigator> -->
     </view>
-    <!-- <navigator hover-class='none' url="/pages/home/groom/index">
-        <view class='action' style="font-size: 27rpx;"> 更多 <view class='icon-right'></view> </view>
-    </navigator> -->
+    <view class="bg-white" style="padding:5rpx 0rpx;">
+        <view class="daily-nutrition-container">
+            <view class="nutrition-row">
+                <!-- 热量信息 -->
+                <view class="nutrition-item-inline">
+                    <view class="nutrition-label">热量</view>
+                    <view class="nutrition-values">
+                        <text class="current-value">{{ titleData.heat }}</text>
+                        <text class="unit">卡</text>
+                    </view>
+                    <view class="recommend-info">
+                        建议: <text class="recommend-value">{{ titleData.heatRule }}</text>
+                    </view>
+                </view>
+
+                <!-- 蛋白质信息 -->
+                <view class="nutrition-item-inline">
+                    <view class="nutrition-label">蛋白质</view>
+                    <view class="nutrition-values">
+                        <text class="current-value">{{ titleData.protein }}</text>
+                        <text class="unit">克</text>
+                    </view>
+                    <view class="recommend-info">
+                        建议: <text class="recommend-value">{{ titleData.proteinRule }}</text>
+                    </view>
+                </view>
+
+                <!-- 脂肪信息 -->
+                <view class="nutrition-item-inline">
+                    <view class="nutrition-label">脂肪</view>
+                    <view class="nutrition-values">
+                        <text class="current-value">{{ titleData.fat }}</text>
+                        <text class="unit">克</text>
+                    </view>
+                    <view class="recommend-info">
+                        建议: <text class="recommend-value">{{ titleData.fatRule }}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bg-white" style="padding:5rpx 0rpx;">
+        <!-- 卡路里消耗柱状图 -->
+        <view class="calories-chart-container bg-white margin-top">
+            <view class="cu-bar bg-white solid-bottom">
+                <view class='action'>
+                    <text class='icon-title text-blue'></text>
+                    <text>十天内卡路里消耗</text>
+                </view>
+            </view>
+
+            <view class="chart-wrapper">
+                <view class="chart-content">
+                    <!-- Y轴刻度标识 -->
+                    <view class="y-axis-labels">
+                        <text class="y-label" wx:for="{{yAxisLabels}}" wx:key="index">{{item}}</text>
+                    </view>
+
+                    <!-- 柱状图主体 -->
+                    <view class="chart-bars">
+                        <view class="bar-item" wx:for="{{caloriesOut}}" wx:key="index">
+                            <view class="bar-container">
+                                <view
+                                        class="bar"        style="height: {{item.amount > 0 ? (item.amount / yAxisMax * 200) : 0}}rpx; background-color: {{item.amount > 0 ? '#4CAF50' : '#CCCCCC'}}">
+                                </view>
+                            </view>
+                            <text class="bar-label">{{item.days}}</text>
+                        </view>
+                    </view>
+                </view>
+
+                <!-- X轴标识 -->
+                <view class="x-axis-label">
+                    <text class="x-label">日期</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="bg-white" style="padding:5rpx 0rpx;">
+        <!-- 卡路里摄入折线图 -->
+        <view class="calories-line-chart-container bg-white margin-top">
+            <view class="cu-bar bg-white solid-bottom">
+                <view class='action'>
+                    <text class='icon-title text-orange'></text>
+                    <text>十天内卡路里摄入</text>
+                </view>
+            </view>
+
+            <view class="line-chart-wrapper">
+                <!-- 图表标题 -->
+                <view class="chart-title">
+                    <text class="title-text">每日卡路里摄入量(卡)</text>
+                </view>
+
+                <!-- 折线图主体 -->
+                <view class="line-chart-content">
+                    <!-- Y轴刻度 -->
+                    <view class="y-axis">
+                        <text class="y-label" wx:for="{{lineYAxisLabels}}" wx:key="index">{{item}}</text>
+                    </view>
+
+                    <!-- 图表区域 -->
+                    <view class="chart-area">
+                        <!-- 网格线 -->
+                        <view class="grid-lines">
+                            <view class="grid-line"></view>
+                            <view class="grid-line"></view>
+                            <view class="grid-line"></view>
+                            <view class="grid-line"></view>
+                            <view class="grid-line"></view>
+                            <view class="grid-line"></view>
+                        </view>
+
+                        <!-- 折线 -->
+                        <view class="line-path">
+                            <view class="line-segment" wx:for="{{caloriesInLines}}" wx:key="index"        style="left: {{item.startX}}%; top: {{item.startY}}%; width: {{item.width}}%; transform: rotate({{item.angle}}deg);">
+                            </view>
+                        </view>
+
+                        <!-- 数据点 -->
+                        <view class="data-points">
+                            <view class="data-point" wx:for="{{caloriesIn}}" wx:key="index"
+                                  style="left: {{index * 10}}%; bottom: {{item.amount / lineYAxisMax * 100}}%;">
+                                <view class="point-inner" style="background-color: {{item.amount > 0 ? '#FF9800' : '#9E9E9E'}};"></view>
+                                <text class="point-value" wx:if="{{item.amount > 0}}">{{item.amount}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+
+                <!-- X轴标签 -->
+                <view class="x-axis">
+                    <view class="x-labels">
+                        <text class="x-label" wx:for="{{caloriesIn}}" wx:key="index">{{item.days}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>
+
 <!-- <view class="bg-white" style="padding:0 30rpx;padding-bottom: 20rpx;">
     <view class='nav-list canui-flex-car'>
 
