@@ -177,16 +177,6 @@ export default {
             return '- -'
           }
         }
-      }, {
-        title: '体重',
-        dataIndex: 'weight',
-        customRender: (text, row, index) => {
-          if (text !== null) {
-            return text + '千克'
-          } else {
-            return '- -'
-          }
-        }
       }]
     }
   },

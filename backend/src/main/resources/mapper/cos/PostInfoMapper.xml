@@ -10,7 +10,7 @@
         tu.STATUS as status,
         tu.CREATE_TIME as createTime,
         tu.LAST_LOGIN_TIME as lastLoginTime,
-        AVATAR,
+        tu.AVATAR,
         ui.name,
         ui.code,
         ui.sex,

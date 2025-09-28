@@ -106,7 +106,7 @@
         1 = 1
         and di.user_id is not null
         <if test="userId != null and userId != ''">
-            AND ui.user_id = #{userId}
+            AND di.user_id = #{userId}
         </if>
         order by
         create_date desc

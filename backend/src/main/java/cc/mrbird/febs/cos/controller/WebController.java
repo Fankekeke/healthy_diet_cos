@@ -621,11 +621,8 @@ public class WebController {
     @GetMapping("/sport/list/all")
     public R querySportByUserId(Integer userId) {
         List<SportTypeInfo> sportTypeInfoList = sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().isNull(SportTypeInfo::getUserId));
-        UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getUserId, userId));
-        if (userInfo != null) {
-            List<SportTypeInfo> sportTypeInfoList1 = sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().eq(SportTypeInfo::getUserId, userInfo.getId()));
-            sportTypeInfoList.addAll(sportTypeInfoList1);
-        }
+        List<SportTypeInfo> sportTypeInfoList1 = sportTypeInfoService.list(Wrappers.<SportTypeInfo>lambdaQuery().eq(SportTypeInfo::getUserId, userId));
+        sportTypeInfoList.addAll(sportTypeInfoList1);
         return R.ok(sportTypeInfoList);
     }
 

@@ -13,17 +13,6 @@
                 <a-input v-model="queryParams.username"/>
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="24">
-              <a-form-item
-                label="账户状态"
-                :labelCol="{span: 5}"
-                :wrapperCol="{span: 18, offset: 1}">
-                <a-select v-model="queryParams.status" allowClear>
-                  <a-select-option value="0">锁定</a-select-option>
-                  <a-select-option value="1">有效</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
           </div>
           <span style="float: right; margin-top: 3px;">
             <a-button type="primary" @click="search">查询</a-button>
@@ -127,12 +116,6 @@ export default {
           }
         }
       }, {
-        title: '密码',
-        dataIndex: 'password',
-        customRender: (text, row, index) => {
-          return '******'
-        }
-      }, {
         title: '性别',
         dataIndex: 'sex',
         customRender: (text, row, index) => {
@@ -158,28 +141,8 @@ export default {
           </a-popover>
         }
       }, {
-        title: '账户状态',
-        dataIndex: 'status',
-        customRender: (text, row, index) => {
-          switch (text) {
-            case '0':
-              return <a-tag color="red">封禁</a-tag>
-            case '1':
-              return <a-tag color="blue">正常</a-tag>
-            default:
-              return '- -'
-          }
-        }
-      }, {
-        title: '上次登陆时间',
-        dataIndex: 'lastLoginTime'
-      }, {
         title: '创建时间',
         dataIndex: 'createTime'
-      }, {
-        title: '操作',
-        dataIndex: 'operation',
-        scopedSlots: {customRender: 'operation'}
       }]
     }
   },
