@@ -101,7 +101,8 @@ public class SportTypeInfoController {
     @PostMapping
     public R save(SportTypeInfo sportTypeInfo) {
         sportTypeInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
-        sportTypeInfo.setCreateDate("ST-" + System.currentTimeMillis());
+        sportTypeInfo.setCode("ST-" + System.currentTimeMillis());
+        sportTypeInfo.setSportTime(30);
         if (sportTypeInfo.getUserId() != null) {
             UserInfo userInfo = userInfoService.getOne(Wrappers.<UserInfo>lambdaQuery().eq(UserInfo::getUserId, sportTypeInfo.getUserId()));
             if (userInfo != null) {

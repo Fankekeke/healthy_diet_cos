@@ -522,8 +522,8 @@ public class WebController {
     }
 
     @GetMapping("/deleteWeight")
-    public R deleteWeight(Integer weightId) {
-        return R.ok(weightRecordInfoService.removeById(weightId));
+    public R deleteWeight(@RequestParam("weightId") Integer weightId) {
+        return R.ok(sportTypeInfoService.removeById(weightId));
     }
 
     @PostMapping("/addDishesInfo")
@@ -539,13 +539,14 @@ public class WebController {
     }
 
     @GetMapping("/deleteDishes")
-    public R deleteDishes(@RequestParam("postId") Integer postId) {
-        return R.ok(dishesInfoService.removeById(postId));
+    public R deleteDishes(@RequestParam("weightId") Integer weightId) {
+        return R.ok(dishesInfoService.removeById(weightId));
     }
 
     @PostMapping("/addSport")
     public R addSportInfo(@RequestBody SportTypeInfo sportTypeInfo) {
         sportTypeInfo.setCode("ST-" + System.currentTimeMillis());
+        sportTypeInfo.setSportTime(30);
         sportTypeInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
         return R.ok(sportTypeInfoService.save(sportTypeInfo));
     }

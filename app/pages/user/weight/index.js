@@ -78,7 +78,7 @@ Page({
   },
   remove(e) {
     console.log(e.currentTarget.dataset.index)
-    http.get('deleteWeight', { weightId: e.currentTarget.dataset.index }).then((r) => {
+    http.get('deleteDishes', { weightId: e.currentTarget.dataset.index }).then((r) => {
       this.getOrderListByUserId(this.data.userInfo.id)
     })
   },

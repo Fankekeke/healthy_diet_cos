@@ -27,7 +27,15 @@
     "pages/check/index/index",
     "pages/user/weight/index",
     "pages/user/help/index",
-    "pages/alert/index/index"
+    "pages/alert/index/index",
+    "pages/user/sportRecord/index",
+    "pages/user/dishesRecord/index",
+    "pages/user/sport/index",
+    "pages/sport/add/index",
+    "pages/home/dishes/index",
+    "pages/home/sport/index",
+    "pages/user/alert/index",
+    "pages/user/post/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",
